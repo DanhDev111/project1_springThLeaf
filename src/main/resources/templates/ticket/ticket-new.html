@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New User</title>
+    <style>
+        h1{
+            text-align: center;
+        }
+        .form-login{
+            
+            height: 100vh;
+            justify-content: center;
+            justify-items: center;
+            margin: 0 20%;
+        }
+        input{
+            width: 150px;
+            height: 40px;
+        }
+        button[type=submit] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 11px 20px;
+            margin: 8px 0;
+            font-size: 18px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+        input[type=text], input[type=password],input[type=number] {
+            width: 100%;
+            padding: 12px 14px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <h1>New Ticket Form</h1>
+    <div class="form-login">
+        <form th:action="@{/ticket/new}" method="post"  th:object="${ticket}">
+            <div>
+                <label>Client Name</label>
+                <input type="text" th:field="*{clientName}" placeholder="Name">
+                <p th:errors="*{clientName}"></p>
+            </div>
+            <div>
+                <label>Số điện thoại</label>
+                <input type="number" th:field="*{clientPhone}" placeholder="Phone">
+                <p th:errors="*{clientPhone}"></p>
+            </div>
+           
+            <div>
+                <label>Nội dung kiếu nại</label>
+                <br>
+                <textarea type="text" th:field="*{content}" rows="4" cols="80" placeholder="Nội dung khiếu nại">
+                </textarea>
+                <p th:errors="*{content}"></p>
+            </div>
+            <div>
+                <label>Status</label>
+<!--                <input type="password" th:field="*{status}" placeholder="status">-->
+<!--                </br>-->
+                <select name="status">
+                    <option>--Choose status--</option>
+                    <option>0</option>
+                    <option>1</option>
+                </select>
+                <p th:errors="*{status}"></p>
+            </div>
+            
+            <div>
+                <label>Department:</label>
+                <select name="department.id">
+                    <option>--Choose department--</option>
+                    <option th:each="d: ${departmentList}"
+                            th:value="${d.id}" th:text="${d.name}"> />
+                </select>
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
