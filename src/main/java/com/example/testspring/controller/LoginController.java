@@ -1,7 +1,7 @@
 package com.example.testspring.controller;
 
-import com.example.testspring.client.dto.dto.LoginUserDTO;
-import com.example.testspring.client.dto.dto.ResponseDTO;
+import com.example.testspring.client.dto.LoginUserDTO;
+import com.example.testspring.client.dto.ResponseDTO;
 import com.example.testspring.repository.UserRepo;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
